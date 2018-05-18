@@ -10,11 +10,10 @@ The VUI designer may put those rules verbatim into the design document, but it i
 
 This becomes really useful when used in conjunction with JUnit unit tests.  Consider the following scenarios:
 
-  * The customer needs to validate the Main Menu rules with another department, and they won't have them finalized until next month.  No problem; code your app and you can update your business rule without impacting the application flow.
+  * The customer needs to validate the Main Menu rules with another department, and they won't have them finalized until next month.  No problem; code your app and you can update your business rules later without impacting the application flow.
   * During UAT, the customer realizes that some accounts have primary phone numbers with all 0's or all 9's.  Those should follow the same logic as "no primary phone number, transfer."  Just update the business rule and add some unit tests.  If it works as expected, release a new build for your QA team.
-  * One year later, the customer asks for a change.  If the account status is P, then a primary phone number is not required and the caller should be allowed to use the main menu.  Do you need to setup their apps in your lab environment so you can update the call flow and test the change?  No, just make a change to the Java rule and unit tests, and you can confidently deliver the new build to the customer for UAT.
+  * One year later, the customer asks for a change.  If the account status is P, then a primary phone number is not required and the caller should be allowed to use the main menu.  Do you need to setup their apps in your lab environment so you can update the call flow and test the change?  No, just make a change to the Java rule and unit tests, and you can confidently deliver the new build to the customer for UAT. *OK, that's a little presumptious, but you know what I mean*
   * The customer says the billing system is being updated and the phone number field will no longer include dashes.  Will that break the Main Menu logic?  A quick unit test will provide the answer.
-  * As the rules get reordered, or more complicated, you can test the changes in Java without touching the OD flows.
 
 Check out com.nextivr.demo.br.MainMenuEval.  It implements the sample "main menu" logic mentioned above.  I added a separate source folder named "test" to keep it organized.  Also, to build my test, with focus in the MainMenuEval.java editor window, I hit ctrl-n for new, and selected JUnit test.  The Eclipse wizard created the test skeleton and also added the junit jar to the classpath.  If you are automating your build process, you can make junit testing a required task, and you can also exclude the "test" source path in the final build.
 
